@@ -7,15 +7,16 @@
     <title>FISHING</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
-
   </head>
   <body>
     <button onclick = "activateXR()">start</button>
     <script>
       async function activateXR() {
-        const canvas = documernt.createELement("canvas");
-        document.body.appendChild(canvas)
+        const canvas = document.createElement("canvas");
+        document.body.appendChild(canvas);
         const gl = canvas.getContext("webgl", {xrCompatible: true});
+
+        const scene = new THREE.Scene();
         const materials = [
           new THREE.MeshBasicMaterial({color:0xfcba03}),
           new THREE.MeshBasicMaterial({color:0x4efc03}),
@@ -24,9 +25,45 @@
           new THREE.MeshBasicMaterial({color:0x1803fc}),
           new THREE.MeshBasicMaterial({color:0xfc03eb})
         ];
-        const cube = new THREE.MESH( new THREE.BoxBufferGeometry(0.2,0.2,0.2), materials);
-        position.set(1,1,1);
+        const cube = new THREE.Mesh(new THREE.BoxBufferGeometry(0.2,0.2,0.2), materials);
+        cube.position.set(1,1,1);
         scene.add(cube);
+
+        const renderer = new THREE.WebGLRenderer({
+          alpha: true,
+          preserveDrawingBuffer: true,
+          canvas: canvas,
+          context:gl
+        });
+        renderer.autoClear = false;
+        
+        const camera = new THREE.PerspectiveCamera();
+        camera.matrixAutoUpdate = false;
+
+        const session = await navigator.xr.requestSession("immersive-ar");
+        session.updateRenderState({
+          baseLayer: new XRWebGLLayer(session, gl)
+        });
+        const referenceSpace= await session.requestReferenceSpace('local');
+        const onXRFrame = (time, frame) => {
+          session.requestAnimationFrame(onXRFRame);
+          gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer)
+          const pose = frae.getViewerPose(referenceSpace);
+          if (pose){
+            const view  = pose.views[0];
+            const viewport = session.renderState.baseLayer.getViewport(view);
+            renderer.setSize(viewport.width, viewport.height);
+
+            camera.matrix.fromArray(view.transform.matrix);
+            camera.projectionMatrix.fromArray(view.projectionMatrix);
+            camera.updateMatrixWorld(true);
+
+            renderer.render(scene, canera);
+
+          }
+        }
+
+        session.requestAnimationFrame(onXRFrame);
 
       }
     </script>
