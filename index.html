@@ -16,6 +16,18 @@
         const canvas = documernt.createELement("canvas");
         document.body.appendChild(canvas)
         const gl = canvas.getContext("webgl", {xrCompatible: true});
+        const materials = [
+          new THREE.MeshBasicMaterial({color:0xfcba03}),
+          new THREE.MeshBasicMaterial({color:0x4efc03}),
+          new THREE.MeshBasicMaterial({color:0x03ebfc}),
+          new THREE.MeshBasicMaterial({color:0x03ebfc}),
+          new THREE.MeshBasicMaterial({color:0x1803fc}),
+          new THREE.MeshBasicMaterial({color:0xfc03eb})
+        ];
+        const cube = new THREE.MESH( new THREE.BoxBufferGeometry(0.2,0.2,0.2), materials);
+        position.set(1,1,1);
+        scene.add(cube);
+
       }
     </script>
 
