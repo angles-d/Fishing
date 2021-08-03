@@ -8,6 +8,11 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   </head>
   <body>
+    <script>
+      if (window.isSecureContext) {
+        console.log("eerer");
+      }
+    </script>
     <button onclick = "activateXR()">start</button>
     <script>
       async function activateXR() {
