@@ -42,7 +42,7 @@ window.gltfLoader.load("https://immersive-web.github.io/webxr-samples/media/gltf
 window.gltfLoader.load("https://angles-d.github.io/Fishing/Test/boat.glb", function(gltf) {
   const boat = gltf.scene.children.find(c => c.name === 'Plane');
   console.log(boat);
-  boat.castShadow = true;
+  // boat.castShadow = true;
   window.boat = gltf.boat;
 });
 
