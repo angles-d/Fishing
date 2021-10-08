@@ -22,7 +22,7 @@ body {
   height: 100vh;
   -webkit-user-select: none;
   user-select: none;
-  background-color: rgb(69, 90, 100);
+  background-color: rgb(131, 210, 247);
 }
 
 div.demo-card {
@@ -34,7 +34,7 @@ div.demo-card {
 #enter-ar-info .mdl-card__title {
   color: #fff;
   height: 176px;
-  background-color: rgb(96, 125, 139);
+  background-color: rgb(10, 67, 95);
 }
 
 body.unsupported #enter-ar-info {
@@ -83,7 +83,7 @@ body.ar #info {
 }
 
 #stabilization {
-  background-image: url(../assets/stabilization.gif);
+  background-image: url(stabilization.gif);
   background-size: contain;
   background-repeat: no-repeat;
   width: 400px;

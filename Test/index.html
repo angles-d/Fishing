@@ -1,26 +1,35 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name = "viewport" content ="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>FISHING</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an augmented reality application with the WebXR Device API</title>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+    <!-- three.js -->
     <!-- <script src="https://unpkg.com/three@0.126.0/build/three.js"></script> -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://rawcdn.githack.com/elbobo/aframe-gltf-morph-component/07e9b80bd382cc1c19223468d35c453e7c76e9a2/dist/aframe-gltf-morph-component.js"></script>
     <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
-    <link rel = "stylesheet" type = "text/css" href = "./app.css" />
+
+    <link rel="stylesheet" type="text/css" href="app.css" />
     <script src="utils.js"></script>
   </head>
   <body>
-    <button id="start-ar">start</button>
-
-    <div id="unsupported-info" class="mdc-card demo-card">
-      <h2>Unsupported Browser</h2>
-      <p>
-        Your browser does not support AR features with WebXR. Learn more about these features from the
-        <a href="https://codelabs.developers.google.com/codelabs/ar-with-webxr">Building an augmented reality application with the WebXR Device API</a> Code Lab.
-      </p>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id = "boat" src ="https://angles-d.github.io/Fishing/Test/boat.glb"></a-asset-item>
+      </a-assets> 
+      <a-entity gltf-model="#boat"></a-entity>
+    </a-scene>
+    <div id="enter-ar-info" class="mdc-card demo-card">
+      <!-- Starting an immersive WebXR session requires user interaction. Start the WebXR experience with a simple button. -->
+      <a id="enter-ar" class="button">
+        Start augmented reality
+      </a>
     </div>
     <script src="app.js"></script>
+    <div id="stabilization"></div>
   </body>
 </html>

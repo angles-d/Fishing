@@ -34,12 +34,14 @@ class Reticle extends THREE.Object3D {
 
 window.gltfLoader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function(gltf) {
   const flower = gltf.scene.children.find(c => c.name === 'sunflower')
+  console.log(flower);
   flower.castShadow = true;
   window.sunflower = gltf.scene;
 });
 
-window.gltfLoader.load("boat.glb", function(gltf) {
-  const boat = gltf.scene.children.find(c => c.name === 'boat')
+window.gltfLoader.load("https://angles-d.github.io/Fishing/Test/boat.glb", function(gltf) {
+  const boat = gltf.scene.children.find(c => c.name === 'Plane');
+  console.log(boat);
   boat.castShadow = true;
   window.boat = gltf.boat;
 });
